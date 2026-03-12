@@ -1,0 +1,892 @@
+/* Reset browser defaults and keep box model calculations consistent. */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Color and spacing tokens used across director views. */
+:root {
+  --bg-main: #f1f2f1;
+  --surface: #ffffff;
+  --text-strong: #0f222d;
+  --text-muted: #55707b;
+  --line: #dde2df;
+  --sidebar-1: #06261d;
+  --sidebar-2: #052319;
+  --active-bg: #1a3d2e;
+  --accent: #ffae00;
+  --green: #2fa65a;
+  --blue: #28a5e5;
+  --amber: #f6a500;
+  --red: #ef4444;
+}
+
+/* Base page appearance. */
+body {
+  font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+  color: var(--text-strong);
+  background: var(--bg-main);
+}
+
+/* Wrapper for sidebar and main content. */
+.layout {
+  min-height: 100vh;
+}
+
+/* Fixed vertical sidebar navigation. */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 345px;
+  height: 100vh;
+  background: linear-gradient(180deg, var(--sidebar-1), var(--sidebar-2));
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+/* Sidebar content column flow. */
+.sidebar-inner {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 0 18px;
+}
+
+/* Top branding section. */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 24px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Brand icon container. */
+.brand-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: var(--accent);
+  display: grid;
+  place-items: center;
+  flex: 0 0 56px;
+}
+
+/* Brand icon strokes. */
+.brand-icon svg {
+  width: 25px;
+  height: 25px;
+  stroke: #0f222d;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Brand heading text. */
+.brand h1 {
+  color: #f8f9f8;
+  font-size: 24px;
+  line-height: 1.05;
+  letter-spacing: -0.2px;
+}
+
+/* Brand subtitle text. */
+.brand p {
+  color: #b6c8c0;
+  margin-top: 6px;
+  font-size: 15px;
+}
+
+/* Sidebar menu label. */
+.menu-title {
+  color: #89a69b;
+  padding: 28px 30px 16px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+}
+
+/* Navigation wrapper. */
+nav {
+  padding: 0 14px;
+}
+
+/* Shared navigation link style. */
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  color: #c9d8d1;
+  font-size: 16px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  margin-bottom: 7px;
+}
+
+/* Navigation icon style. */
+.nav-item svg {
+  width: 26px;
+  height: 26px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Active nav link appearance. */
+.nav-item.active {
+  color: #ffb300;
+  background: var(--active-bg);
+  font-weight: 700;
+}
+
+/* Sidebar footer area. */
+.sidebar-footer {
+  margin-top: auto;
+  padding: 20px 24px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  color: #7ea093;
+  font-size: 13px;
+  line-height: 1.25;
+}
+
+/* Main content area offset by fixed sidebar width. */
+.workspace {
+  margin-left: 345px;
+  min-height: 100vh;
+  width: calc(100% - 345px);
+  font-size: 80%;
+}
+
+/* Header bar on top of content area. */
+.topbar {
+  height: 85px;
+  background: #ffffff;
+  border-bottom: 1px solid #d7dcda;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+}
+
+/* Topbar heading text. */
+.topbar-title {
+  color: #4b6e77;
+  font-size: 20px;
+}
+
+/* User identity area in topbar. */
+.topbar-user {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Circular avatar background. */
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  background: #e6eeea;
+  display: grid;
+  place-items: center;
+}
+
+/* Shared icon style for avatar/logout. */
+.avatar svg,
+.logout-btn svg {
+  width: 20px;
+  height: 20px;
+  stroke: #3f6d59;
+  fill: none;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* User name text in topbar. */
+.topbar-user strong {
+  display: block;
+  font-size: 16px;
+  color: #0f222d;
+}
+
+/* User role/secondary text in topbar. */
+.topbar-user small {
+  color: #5f7a6d;
+  font-size: 14px;
+}
+
+/* Minimal logout button reset. */
+.logout-btn {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  margin-left: 8px;
+  padding: 4px;
+}
+
+/* Main content spacing container. */
+.content-area {
+  padding: 28px 28px 24px;
+  width: 100%;
+  max-width: 1650px;
+}
+
+/* Primary page title style. */
+.content-area h2 {
+  font-size: clamp(28px, 2.2vw, 36px);
+  margin-bottom: 8px;
+}
+
+/* Supporting subtitle style. */
+.subtext {
+  color: #4d6f78;
+  font-size: clamp(15px, 1.1vw, 18px);
+  margin-bottom: 28px;
+}
+
+/* Dashboard stat cards grid. */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  margin-bottom: 28px;
+}
+
+/* Single stat card shell. */
+.stat-card {
+  background: var(--surface);
+  border: 1px solid #d6dcda;
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  min-height: 120px;
+}
+
+/* Icon block inside stat cards. */
+.stat-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: #f0f0ef;
+  display: grid;
+  place-items: center;
+}
+
+/* Icon svg appearance in stat cards. */
+.stat-icon svg {
+  width: 26px;
+  height: 26px;
+  fill: none;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Color variants for stat icons. */
+.icon-green svg { stroke: var(--green); }
+.icon-blue svg { stroke: var(--blue); }
+.icon-amber svg { stroke: var(--amber); }
+.icon-red svg { stroke: var(--red); }
+
+/* Small label above stat numbers. */
+.label {
+  color: #547078;
+  font-size: clamp(14px, 1vw, 17px);
+  margin-bottom: 4px;
+}
+
+/* Emphasized number inside stat cards. */
+.stat-card h3 {
+  font-size: clamp(24px, 1.7vw, 30px);
+  letter-spacing: 0.2px;
+}
+
+/* Two-column branch summary layout. */
+.branch-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 30px;
+  margin-bottom: 24px;
+}
+
+/* Branch detail card. */
+.branch-card {
+  background: var(--surface);
+  border: 1px solid #d6dcda;
+  border-radius: 16px;
+  padding: 28px 32px;
+}
+
+/* Branch card title. */
+.branch-card h4 {
+  font-size: clamp(24px, 1.8vw, 30px);
+  margin-bottom: 20px;
+}
+
+/* Reusable horizontal metric row. */
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 0;
+  border-bottom: 1px solid #dce1de;
+}
+
+/* Row label text. */
+.row span {
+  font-size: clamp(16px, 1.2vw, 20px);
+  color: #537078;
+}
+
+/* Row numeric value text. */
+.row strong {
+  font-size: clamp(18px, 1.4vw, 24px);
+}
+
+/* Warning color for low/critical values. */
+.warning { color: #ef8b20; }
+
+/* Recent activity container. */
+.activity-card {
+  background: var(--surface);
+  border: 1px solid #d6dcda;
+  border-radius: 16px;
+  padding: 22px 26px;
+}
+
+/* Activity card title. */
+.activity-card h4 {
+  font-size: clamp(22px, 1.7vw, 28px);
+  margin-bottom: 14px;
+}
+
+/* Single activity item row. */
+.activity-item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 16px 0;
+  border-bottom: 1px solid #dce1de;
+}
+
+/* Remove bottom border for last activity item. */
+.activity-item-last { border-bottom: none; }
+
+/* Left-side activity content grouping. */
+.activity-main {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+/* Small colored indicator dot. */
+.activity-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #1f7a46;
+  margin-top: 8px;
+  flex: 0 0 11px;
+}
+
+/* Activity item title. */
+.activity-main h5 {
+  font-size: clamp(17px, 1.2vw, 21px);
+  margin-bottom: 4px;
+}
+
+/* Activity item subtext. */
+.activity-main p {
+  color: #4d6f78;
+  font-size: clamp(14px, 1vw, 17px);
+}
+
+/* Right-side activity metadata column. */
+.activity-meta {
+  text-align: left;
+  min-width: 210px;
+}
+
+/* Shared typography for activity metadata lines. */
+.activity-meta time,
+.activity-meta p {
+  color: #4d6f78;
+  font-size: clamp(14px, 1vw, 17px);
+  line-height: 1.35;
+}
+
+/* Branch details report card. */
+.branches-detail-card {
+  background: var(--surface);
+  border: 1px solid #d6dcda;
+  border-radius: 16px;
+  padding: 20px 22px;
+}
+
+/* Branch detail heading. */
+.branches-detail-card h4 {
+  font-size: clamp(24px, 1.8vw, 30px);
+  margin-bottom: 12px;
+}
+
+/* Small subheading in branch detail section. */
+.detail-subhead {
+  font-size: clamp(16px, 1.1vw, 19px);
+  color: #55707b;
+  margin-bottom: 10px;
+}
+
+/* Table for branch-level records. */
+.branches-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 14px;
+}
+
+/* Cell styles for branch table. */
+.branches-table th,
+.branches-table td {
+  padding: 10px 6px;
+  border-bottom: 1px solid #dce1de;
+  text-align: left;
+  font-size: clamp(14px, 1vw, 17px);
+}
+
+/* Branch table header tone. */
+.branches-table th {
+  color: #55707b;
+  font-weight: 700;
+}
+
+/* Align numeric columns to the right for readability. */
+.branches-table th:nth-child(3),
+.branches-table th:nth-child(4),
+.branches-table td:nth-child(3),
+.branches-table td:nth-child(4) {
+  text-align: right;
+}
+
+/* Summary cards layout below branches table. */
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+/* Individual summary card style. */
+.summary-box {
+  background: #f1f2f1;
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+
+/* Summary label text. */
+.summary-box p {
+  color: #55707b;
+  font-size: clamp(14px, 1vw, 16px);
+}
+
+/* Summary metric number. */
+.summary-box strong {
+  display: block;
+  margin-top: 2px;
+  font-size: clamp(24px, 1.7vw, 30px);
+}
+
+/* User management table card. */
+.users-card {
+  background: var(--surface);
+  border: 1px solid #d6dcda;
+  border-radius: 16px;
+  padding: 14px 20px 18px;
+}
+
+/* Add-user form layout for director user management. */
+.add-user-form {
+  margin-bottom: 14px;
+}
+
+/* Responsive fields grid for new user details. */
+.add-user-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+/* Label text and field stacking inside add-user form. */
+.add-user-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: #55707b;
+  font-weight: 600;
+  font-size: clamp(13px, 0.95vw, 15px);
+}
+
+/* Input and select styling for add-user form controls. */
+.add-user-form input,
+.add-user-form select {
+  border: 1px solid #cfd8d4;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font: inherit;
+  background: #ffffff;
+  color: var(--text-strong);
+}
+
+/* Add user primary action button. */
+.add-user-btn {
+  border: 0;
+  border-radius: 10px;
+  padding: 10px 16px;
+  background: #0f5d3d;
+  color: #ffffff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* Delete action button used in users table. */
+.delete-user-btn {
+  border: 1px solid #f0c2c2;
+  border-radius: 8px;
+  padding: 6px 11px;
+  background: #fff2f2;
+  color: #b42318;
+  font-size: clamp(13px, 0.9vw, 15px);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* Users table layout. */
+.users-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Users table cell style. */
+.users-table th,
+.users-table td {
+  text-align: left;
+  padding: 13px 14px;
+  border-bottom: 1px solid #dce1de;
+  font-size: clamp(15px, 1.05vw, 18px);
+}
+
+/* Users table header style. */
+.users-table th {
+  color: #55707b;
+  font-weight: 700;
+}
+
+/* Strong name emphasis in users table. */
+.users-table td strong {
+  font-size: clamp(16px, 1.15vw, 20px);
+}
+
+/* Common pill shape for role/status tags. */
+.role-pill,
+.status-pill {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: clamp(14px, 0.95vw, 16px);
+}
+
+/* Role and status color variants. */
+.role-director { background: #d7dfda; color: #2b7a4e; }
+.role-manager { background: #d5e4ef; color: #1f8ee0; }
+.role-agent { background: #e3e3e3; color: #4e6f7a; }
+.status-active { background: #d7dfda; color: #1f9c4b; }
+
+/* Reports table container card. */
+.reports-table-card {
+  background: var(--surface);
+  border: 1px solid #d6dcda;
+  border-radius: 16px;
+  padding: 18px 20px;
+  margin-bottom: 18px;
+}
+
+/* Reports card heading. */
+.reports-table-card h4 {
+  font-size: clamp(24px, 1.8vw, 30px);
+  margin-bottom: 12px;
+}
+
+/* Reports table base style. */
+.reports-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Reports table cell styling. */
+.reports-table th,
+.reports-table td {
+  text-align: left;
+  padding: 11px 8px;
+  border-bottom: 1px solid #dce1de;
+  font-size: clamp(14px, 1vw, 17px);
+}
+
+/* Reports table header typography. */
+.reports-table th {
+  color: #55707b;
+  font-weight: 700;
+}
+
+/* Right align numeric report columns. */
+.reports-table th:nth-child(n+2),
+.reports-table td:nth-child(n+2) {
+  text-align: right;
+}
+
+/* Positive/negative value colors. */
+.positive { color: #17a34a; font-weight: 700; }
+.negative { color: #ef4444; font-weight: 700; }
+.reports-summary-grid { margin-top: 8px; }
+.report-total-box { min-height: 86px; }
+
+/* Analytics metric cards grid. */
+.analytics-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+/* Analytics metric card shell. */
+.analytics-metric-card {
+  background: var(--surface);
+  border: 1px solid #d6dcda;
+  border-radius: 14px;
+  padding: 16px 14px;
+  text-align: center;
+}
+
+/* Analytics metric label style. */
+.analytics-metric-card p {
+  color: #55707b;
+  font-size: clamp(15px, 1.05vw, 18px);
+  margin-bottom: 2px;
+}
+
+/* Analytics metric value style. */
+.analytics-metric-card strong {
+  font-size: clamp(30px, 1.9vw, 40px);
+}
+
+/* Negative analytics metric tone. */
+.metric-negative { color: #e33030; }
+
+/* Two-column analytics summary layout. */
+.analytics-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+/* Analytics summary card style. */
+.analytics-summary-card {
+  background: var(--surface);
+  border: 1px solid #d6dcda;
+  border-radius: 16px;
+  padding: 18px 16px;
+}
+
+/* Analytics summary title. */
+.analytics-summary-card h4 {
+  font-size: clamp(24px, 1.7vw, 32px);
+  margin-bottom: 10px;
+}
+
+/* Row style for analytics key/value pairs. */
+.analytics-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #dce1de;
+}
+
+/* Analytics row label style. */
+.analytics-row span {
+  color: #55707b;
+  font-size: clamp(15px, 1.1vw, 19px);
+}
+
+/* Analytics row value style. */
+.analytics-row strong {
+  font-size: clamp(18px, 1.35vw, 24px);
+}
+
+/* Remove divider on last analytics row. */
+.analytics-row-last { border-bottom: none; }
+
+/* Audit log table container. */
+.audit-card {
+  background: var(--surface);
+  border: 1px solid #d6dcda;
+  border-radius: 16px;
+  padding: 14px 16px;
+}
+
+/* Audit table layout. */
+.audit-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Audit table cell styles. */
+.audit-table th,
+.audit-table td {
+  text-align: left;
+  padding: 11px 10px;
+  border-bottom: 1px solid #dce1de;
+  font-size: clamp(14px, 1vw, 17px);
+}
+
+/* Audit table header style. */
+.audit-table th {
+  color: #55707b;
+  font-weight: 700;
+}
+
+/* Lighter tone for audit details text. */
+.audit-detail { color: #55707b; }
+
+/* Panel system for tabbed pages. */
+.panel { display: none; }
+.panel.active { display: block; }
+
+/* Desktop-to-laptop responsive adjustments. */
+@media (max-width: 1600px) {
+  .sidebar {
+    width: 295px;
+  }
+
+  .workspace {
+    margin-left: 295px;
+    width: calc(100% - 295px);
+  }
+
+  .brand h1 { font-size: 24px; }
+  .brand p { font-size: 15px; }
+  .nav-item { font-size: 16px; }
+  .sidebar-footer { font-size: 13px; }
+  .topbar-title { font-size: 20px; }
+  .content-area h2 { font-size: clamp(28px, 2.2vw, 36px); }
+  .subtext { font-size: 16px; }
+  .label { font-size: 15px; }
+  .stat-card h3 { font-size: clamp(24px, 1.7vw, 30px); }
+  .branch-card h4 { font-size: clamp(24px, 1.8vw, 30px); }
+  .row span { font-size: clamp(16px, 1.2vw, 20px); }
+  .row strong { font-size: clamp(18px, 1.4vw, 24px); }
+}
+
+/* Tablet layout changes. */
+@media (max-width: 1200px) {
+  .sidebar {
+    width: 250px;
+  }
+
+  .workspace {
+    margin-left: 250px;
+    width: calc(100% - 250px);
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .branch-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .brand h1 { font-size: 22px; }
+  .brand p { font-size: 14px; }
+  .menu-title { font-size: 12px; }
+  .sidebar-footer { font-size: 13px; }
+  .nav-item { font-size: 15px; }
+  .topbar-title { font-size: 17px; }
+  .content-area h2 { font-size: clamp(26px, 2.8vw, 32px); }
+  .subtext { font-size: 15px; }
+  .label { font-size: 14px; }
+  .stat-card h3 { font-size: clamp(22px, 1.9vw, 28px); }
+  .branch-card h4 { font-size: clamp(22px, 1.9vw, 28px); }
+  .row span { font-size: clamp(15px, 1.4vw, 18px); }
+  .row strong { font-size: clamp(17px, 1.6vw, 22px); }
+
+  .activity-item {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .activity-meta {
+    min-width: 0;
+    padding-left: 25px;
+  }
+
+  .summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .analytics-metrics-grid,
+  .analytics-summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .users-card {
+    padding: 10px 12px 14px;
+  }
+
+  .users-table th,
+  .users-table td {
+    padding: 10px 8px;
+  }
+
+  .add-user-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Mobile layout changes. */
+@media (max-width: 860px) {
+  .sidebar {
+    position: static;
+    width: 100%;
+    height: auto;
+  }
+
+  .sidebar-inner {
+    height: auto;
+  }
+
+  .workspace {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .topbar {
+    padding: 0 16px;
+  }
+
+  .content-area {
+    padding: 16px;
+    max-width: 100%;
+  }
+}

@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Director Overview - Karibu Groceries</title>
+  <link rel="stylesheet" href="/Frontend/styles/director.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-inner">
+        <div class="brand">
+          <div class="brand-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 3 4.5 7 12 11 19.5 7 12 3Z"></path>
+              <path d="M4.5 7v10L12 21l7.5-4V7"></path>
+              <path d="M12 11v10"></path>
+            </svg>
+          </div>
+          <div>
+            <h1>Karibu Groceries</h1>
+            <p>Wholesale Distributor</p>
+          </div>
+        </div>
+
+        <div class="menu-title">FULL SYSTEM ACCESS</div>
+
+        <nav>
+          <a class="nav-item active" href="#" data-panel="dashboard">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>
+            <span>Dashboard</span>
+          </a>
+          <a class="nav-item" href="#" data-panel="branches">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s4-6 10-6 10 6 10 6-4 6-10 6S2 12 2 12Z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+            <span>All Branches</span>
+          </a>
+          <a class="nav-item" href="#" data-panel="users">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            <span>Users</span>
+          </a>
+          <a class="nav-item" href="#" data-panel="reports">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3v18h18"></path><path d="M8 17V9"></path><path d="M13 17V5"></path><path d="M18 17v-3"></path></svg>
+            <span>Reports</span>
+            
+        
+          </a>
+          <a class="nav-item" href="#" data-panel="analytics">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path><path d="M16 13H8"></path><path d="M16 17H8"></path><path d="M10 9H8"></path></svg>
+            <span>Analytics</span>
+          </a>
+          <a class="nav-item" href="#" data-panel="audit">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"></path></svg>
+            <span>Audit Logs</span>
+          </a>
+        </nav>
+
+        <div class="sidebar-footer">
+          <p>KGL System v1.0</p>
+          <p>Director Panel</p>
+        </div>
+      </div>
+    </aside>
+
+    <div class="workspace">
+      <header class="topbar">
+        <div class="topbar-title" id="director-topbar-title">Users</div>
+        <div class="topbar-user">
+          <div class="avatar">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 20a8 8 0 0 1 16 0"></path></svg>
+          </div>
+          <div>
+            <strong id="director-name">Mr. Orban</strong>
+            <small id="director-role">Director</small>
+          </div>
+          <button class="logout-btn" aria-label="Logout" onclick="logoutUser();">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 17l5-5-5-5"></path><path d="M21 12H9"></path><path d="M12 19H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h7"></path></svg>
+          </button>
+        </div>
+      </header>
+
+      <main class="content-area">
+        <section id="panel-dashboard" class="panel active">
+          <h2 id="director-dashboard-title">Director Overview</h2>
+          <p class="subtext" id="director-dashboard-subtext">Welcome back. Here's your business summary across all branches.</p>
+          <section class="stats-grid">
+            <article class="stat-card"><div class="stat-icon icon-green"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 15 5-5 4 4 5-5"></path><path d="M14 4h5v5"></path></svg></div><div><p class="label">Total Revenue</p><h3 id="stat-total-revenue">UGX 0</h3></div></article>
+            <article class="stat-card"><div class="stat-icon icon-blue"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4.5 7 12 11 19.5 7 12 3Z"></path><path d="M4.5 7v10L12 21l7.5-4V7"></path><path d="M12 11v10"></path></svg></div><div><p class="label">Procurement Cost</p><h3 id="stat-procurement-cost">UGX 0</h3></div></article>
+            <article class="stat-card"><div class="stat-icon icon-green"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 12.39A2 2 0 0 0 9.64 15H19a2 2 0 0 0 1.95-1.57L23 6H6"></path></svg></div><div><p class="label">Total Sales</p><h3 id="stat-total-sales">0</h3></div></article>
+            <article class="stat-card"><div class="stat-icon icon-amber"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"></rect><path d="M2 10h20"></path></svg></div><div><p class="label">Credit Outstanding</p><h3 id="stat-credit-outstanding">UGX 0</h3></div></article>
+            <article class="stat-card"><div class="stat-icon icon-green"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16"></path><path d="M6 20V7l6-3 6 3v13"></path><path d="M10 11h4"></path><path d="M10 15h4"></path></svg></div><div><p class="label">Total Stock</p><h3 id="stat-total-stock">0 kg</h3></div></article>
+            <article class="stat-card"><div class="stat-icon icon-red"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10.29 3.86 1.82 18A2 2 0 0 0 3.53 21h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg></div><div><p class="label">Low Stock Items</p><h3 id="stat-low-stock">0</h3></div></article>
+          </section>
+          <section class="branch-grid" id="dashboard-branch-grid"></section>
+          <section class="activity-card">
+            <h4>Recent Activity</h4>
+            <div id="recent-activity-list"></div>
+          </section>
+        </section>
+
+        <section id="panel-branches" class="panel">
+          <h2>All Branches</h2>
+          <p class="subtext">Aggregated view across Maganjo and Matugga.</p>
+          <div id="all-branches-container"></div>
+        </section>
+        <!-----------USERS------------>
+
+        <section id="panel-users" class="panel">
+          <h2>Manage Users</h2>
+          <p class="subtext">System users across all branches.</p>
+          <section class="users-card">
+            <form id="add-user-form" class="add-user-form">
+              <div class="add-user-grid">
+                <label>
+                  <span>Name</span>
+                  <input id="new-user-name" type="text" required placeholder="Enter full name">
+                </label>
+                <label>
+                  <span>Username</span>
+                  <input id="new-user-username" type="text" required placeholder="Enter username">
+                </label>
+                <label>
+                  <span>Password</span>
+                  <input id="new-user-password" type="password" required placeholder="Enter password">
+                </label>
+                <label>
+                  <span>Role</span>
+                  <select id="new-user-role" required>
+                    <option value="Director">Director</option>
+                    <option value="Manager">Manager</option>
+                    <option value="Sales Agent" selected>Sales Agent</option>
+                  </select>
+                </label>
+                <label>
+                  <span>Branch</span>
+                  <select id="new-user-branch" required>
+                    <option value="">All Branches</option>
+                    <option value="Maganjo">Maganjo</option>
+                    <option value="Matugga">Matugga</option>
+                  </select>
+                </label>
+              </div>
+              <button type="submit" class="add-user-btn">Add User</button>
+            </form>
+            <table class="users-table">
+              <thead><tr><th>Name</th><th>Role</th><th>Branch</th><th>Status</th><th>Delete</th></tr></thead>
+              <tbody id="users-table-body"><tr><td colspan="5">Loading users...</td></tr></tbody>
+            </table>
+          </section>
+        </section>
+        <!------------REPORTS----------->
+
+        <section id="panel-reports" class="panel">
+          <h2>Reports</h2>
+          <p class="subtext">Business performance summaries.</p>
+          <section class="reports-table-card">
+            <h4>Produce Performance</h4>
+            <table class="reports-table">
+              <thead><tr><th>Produce Type</th><th>Procured (kg)</th><th>Sold (kg)</th><th>Revenue (UGX)</th><th>Cost (UGX)</th><th>Margin (UGX)</th></tr></thead>
+              <tbody id="produce-performance-body"><tr><td colspan="6">Loading produce performance...</td></tr></tbody>
+            </table>
+          </section>
+          <section class="summary-grid reports-summary-grid">
+            <div class="summary-box report-total-box"><p>Total Revenue</p><strong id="report-total-revenue">UGX 0</strong></div>
+            <div class="summary-box report-total-box"><p>Total Procurement Cost</p><strong id="report-total-cost">UGX 0</strong></div>
+            <div class="summary-box report-total-box"><p>Outstanding Credit</p><strong class="warning" id="report-total-credit">UGX 0</strong></div>
+          </section>
+        </section>
+
+        <!--ANALYTICS-->
+
+        <section id="panel-analytics" class="panel">
+          <h2>Analytics</h2>
+          <p class="subtext">Key business metrics and trends.</p>
+          <section class="analytics-metrics-grid">
+            <article class="analytics-metric-card"><p>Gross Revenue</p><strong id="analytics-gross-revenue">UGX 0</strong></article>
+            <article class="analytics-metric-card"><p>Total Cost</p><strong id="analytics-total-cost">UGX 0</strong></article>
+            <article class="analytics-metric-card"><p>Gross Margin</p><strong id="analytics-gross-margin">UGX 0</strong></article>
+            <article class="analytics-metric-card"><p>Margin %</p><strong id="analytics-margin-pct">0%</strong></article>
+          </section>
+          <section class="analytics-summary-grid">
+            <article class="analytics-summary-card"><h4>Procurement Summary</h4><div class="analytics-row"><span>Total Entries</span><strong id="analytics-procurement-entries">0</strong></div><div class="analytics-row"><span>Total Procured</span><strong id="analytics-procured-kg">0 kg</strong></div><div class="analytics-row analytics-row-last"><span>Avg. Cost/kg</span><strong id="analytics-avg-cost">UGX 0</strong></div></article>
+            <article class="analytics-summary-card"><h4>Sales Summary</h4><div class="analytics-row"><span>Total Transactions</span><strong id="analytics-sales-transactions">0</strong></div><div class="analytics-row"><span>Total Sold</span><strong id="analytics-sold-kg">0 kg</strong></div><div class="analytics-row analytics-row-last"><span>Avg. Price/kg</span><strong id="analytics-avg-price">UGX 0</strong></div></article>
+          </section>
+        </section>
+
+        <!--AUDIT LOGS-->
+
+        <section id="panel-audit" class="panel">
+          <h2>Audit Logs</h2>
+          <p class="subtext">Complete activity trail across all branches.</p>
+          <section class="audit-card">
+            <table class="audit-table">
+              <thead><tr><th>Timestamp</th><th>Action</th><th>User</th><th>Role</th><th>Details</th></tr></thead>
+              <tbody id="audit-body"><tr><td colspan="5">Loading audit activity...</td></tr></tbody>
+            </table>
+          </section>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    // Define the base URL for API requests using the current window's origin
+    const API_URL = `${window.location.origin}/api`;
+    // Select all navigation items that have a 'data-panel' attribute
+    const navItems = document.querySelectorAll('.nav-item[data-panel]');
+    // Select all panel elements to show/hide based on navigation
+    const panels = document.querySelectorAll('.panel');
+    // Reference the title element in the top bar to update it dynamically
+    const topbarTitle = document.getElementById('director-topbar-title');
+    // Reference the form used to create new users
+    const addUserForm = document.getElementById('add-user-form');
+    // Reference the table body where the user list will be rendered
+    const usersTableBody = document.getElementById('users-table-body');
+
+    // Function to clear session/local storage and redirect to the login page
+    function logoutUser() {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      sessionStorage.removeItem('token');
+      sessionStorage.removeItem('user');
+      window.location.replace('/login.html'); // Redirects and prevents "back" button access
+    }
+
+    // Retrieves the authentication token from either local or session storage
+    function getToken() {
+      return localStorage.getItem('token') || sessionStorage.getItem('token') || '';
+    }
+
+    // Parses and returns the logged-in user object; returns empty object on failure
+    function getUser() {
+      try {
+        return JSON.parse(localStorage.getItem('user') || sessionStorage.getItem('user') || '{}');
+      } catch (error) {
+        return {};
+      }
+    }
+
+    // Formats a number into a Ugandan Shilling (UGX) currency string
+    function formatCurrency(value) {
+      return `UGX ${Number(value || 0).toLocaleString()}`;
+    }
+
+    // Converts a date string into YYYY-MM-DD format
+    function formatDate(value) {
+      return value ? new Date(value).toISOString().split('T')[0] : '-';
+    }
+
+    // Converts a date string into YYYY-MM-DD HH:mm format for activity logs
+    function formatDateTime(value) {
+      if (!value) return '-';
+      const date = new Date(value);
+      return `${date.toISOString().split('T')[0]} ${date.toTimeString().slice(0, 5)}`;
+    }
+
+    // Returns a CSS class name based on the user's role for color-coded pills
+    function roleClass(role) {
+      if (role === 'Director') return 'role-director';
+      if (role === 'Manager') return 'role-manager';
+      return 'role-agent';
+    }
+
+    // Categorizes produce based on keywords found in the name
+    function produceTypeFromName(name) {
+      const lower = String(name || '').toLowerCase();
+      if (lower.includes('flour')) return 'Flour';
+      if (lower.includes('maize')) return 'Cereals';
+      return 'Grains';
+    }
+
+    // Helper function to handle authenticated API calls and error checking
+    async function fetchJson(path, options = {}) {
+      const response = await fetch(`${API_URL}${path}`, {
+        ...options,
+        headers: {
+          ...(options.headers || {}),
+          Authorization: `Bearer ${getToken()}`, // Injects the JWT token
+        },
+      });
+      const payload = await response.json();
+      if (!response.ok) {
+        throw new Error(payload.message || payload.error || payload.details || 'Request failed.');
+      }
+      return payload;
+    }
+
+    // Toggles visibility of UI panels and updates the active state of nav buttons
+    function activatePanel(panelKey) {
+      navItems.forEach((n) => n.classList.toggle('active', n.getAttribute('data-panel') === panelKey));
+      panels.forEach((panel) => panel.classList.toggle('active', panel.id === `panel-${panelKey}`));
+      topbarTitle.textContent = panelKey.charAt(0).toUpperCase() + panelKey.slice(1);
+    }
+
+    // Attach click listeners to navigation items to switch between views
+    navItems.forEach((item) => {
+      item.addEventListener('click', (event) => {
+        event.preventDefault();
+        activatePanel(item.getAttribute('data-panel'));
+      });
+    });
+
+    // Sends a DELETE request to remove a user after confirmation
+    async function deleteUser(userId) {
+      if (!window.confirm('Delete this user?')) return;
+      try {
+        await fetchJson(`/users/${userId}`, { method: 'DELETE' });
+        await loadDirectorDashboard(); // Refresh UI after deletion
+      } catch (error) {
+        window.alert(error.message || 'Failed to delete user.');
+      }
+    }
+
+    // Generates the HTML table rows for the User Management section
+    function renderUsers(users) {
+      if (!users.length) {
+        usersTableBody.innerHTML = '<tr><td colspan="5">No users found.</td></tr>';
+        return;
+      }
+      usersTableBody.innerHTML = users.map((user) => `
+        <tr>
+          <td><strong>${user.fullName}</strong></td>
+          <td><span class="role-pill ${roleClass(user.role)}">${user.role}</span></td>
+          <td>${user.branch || 'All Branches'}</td>
+          <td><span class="status-pill status-active">Active</span></td>
+          <td><button type="button" class="delete-user-btn" data-user-id="${user._id || user.id}">Delete</button></td>
+        </tr>
+      `).join('');
+      // Attach event listeners to newly created delete buttons
+      usersTableBody.querySelectorAll('.delete-user-btn').forEach((button) => {
+        button.addEventListener('click', () => deleteUser(button.dataset.userId));
+      });
+    }
+
+    // Updates the dashboard KPI cards with summarized totals
+    function renderDashboardStats(summary) {
+      document.getElementById('stat-total-revenue').textContent = formatCurrency(summary.totalRevenue);
+      document.getElementById('stat-procurement-cost').textContent = formatCurrency(summary.totalProcurementCost);
+      document.getElementById('stat-total-sales').textContent = String(summary.totalSalesTransactions);
+      document.getElementById('stat-credit-outstanding').textContent = formatCurrency(summary.creditOutstanding);
+      document.getElementById('stat-total-stock').textContent = `${Number(summary.totalStockKg || 0).toLocaleString()} kg`;
+      document.getElementById('stat-low-stock').textContent = String(summary.lowStockCount);
+    }
+
+    // Renders summary cards and detailed stock tables for each branch
+    function renderBranchCards(branchSummaries, stockByBranch) {
+      const dashboardGrid = document.getElementById('dashboard-branch-grid');
+      const allBranchesContainer = document.getElementById('all-branches-container');
+
+      // Update the small summary cards on the main dashboard
+      dashboardGrid.innerHTML = branchSummaries.map((branch) => `
+        <article class="branch-card">
+          <h4>${branch.branch}</h4>
+          <div class="row"><span>Total Sales</span><strong>${formatCurrency(branch.totalSales)}</strong></div>
+          <div class="row"><span>Stock Available</span><strong>${Number(branch.totalStockKg).toLocaleString()} kg</strong></div>
+          <div class="row"><span>Credit Outstanding</span><strong class="warning">${formatCurrency(branch.creditOutstanding)}</strong></div>
+        </article>
+      `).join('');
+
+      // Update the detailed "Branches" panel with full stock tables
+      allBranchesContainer.innerHTML = branchSummaries.map((branch) => {
+        const branchStock = stockByBranch[branch.branch] || [];
+        return `
+          <section class="branches-detail-card">
+            <h4>${branch.branch} Branch</h4>
+            <p class="detail-subhead">Stock Levels</p>
+            <table class="branches-table">
+              <thead><tr><th>Produce</th><th>Type</th><th>Quantity (kg)</th><th>Price/kg (UGX)</th></tr></thead>
+              <tbody>
+                ${branchStock.length ? branchStock.map((item) => `<tr><td>${item.name}</td><td>${produceTypeFromName(item.name)}</td><td>${Number(item.quantityKg > 0 ? item.quantityKg : item.quantity || 0).toLocaleString()}</td><td>${Number(item.pricePerKg || 0).toLocaleString()}</td></tr>`).join('') : '<tr><td colspan="4">No stock records.</td></tr>'}
+              </tbody>
+            </table>
+            <div class="summary-grid">
+              <div class="summary-box"><p>Total Sales</p><strong>${formatCurrency(branch.totalSales)}</strong></div>
+              <div class="summary-box"><p>Total Stock</p><strong>${Number(branch.totalStockKg).toLocaleString()} kg</strong></div>
+              <div class="summary-box"><p>Credit Due</p><strong class="warning">${formatCurrency(branch.creditOutstanding)}</strong></div>
+            </div>
+          </section>
+        `;
+      }).join('');
+    }
+
+    // Combines and sorts sales, procurements, and credits into a single chronological feed
+    function renderActivities(procurements, sales, credits) {
+      const target = document.getElementById('recent-activity-list');
+      const activities = [
+        ...procurements.map((item) => ({
+          date: item.procurementDate, title: 'Procurement Recorded',
+          description: `${Number(item.tonnageKg || 0).toLocaleString()}kg ${item.produceName} procured from ${item.dealerName}`,
+          actor: item.recordedBy || item.dealerName || item.branchName,
+        })),
+        ...sales.map((item) => ({
+          date: item.dateTime, title: 'Sale Recorded',
+          description: `${Number(item.tonnageKg || 0).toLocaleString()}kg ${item.produceName} sold to ${item.buyerName}`,
+          actor: item.salesAgentName,
+        })),
+        ...credits.map((item) => ({
+          date: item.dispatchDate, title: 'Credit Sale Created',
+          description: `${Number(item.tonnageKg || 0).toLocaleString()}kg ${item.produceName} on credit to ${item.buyerName}`,
+          actor: item.salesAgentName,
+        })),
+      ].sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 8); // Only show the 8 most recent
+
+      target.innerHTML = activities.length ? activities.map((item, index) => `
+        <article class="activity-item ${index === activities.length - 1 ? 'activity-item-last' : ''}">
+          <div class="activity-main"><span class="activity-dot"></span><div><h5>${item.title}</h5><p>${item.description}</p></div></div>
+          <div class="activity-meta"><time datetime="${item.date}">${formatDateTime(item.date)}</time><p>${item.actor || 'System'}</p></div>
+        </article>
+      `).join('') : '<article class="activity-item activity-item-last"><div class="activity-main"><span class="activity-dot"></span><div><h5>No Activity</h5><p>No recent activity recorded.</p></div></div></article>';
+    }
+
+    // Aggregates data by Produce Type to show financial performance (Revenue vs. Cost)
+    function renderProducePerformance(procurements, sales) {
+      const body = document.getElementById('produce-performance-body');
+      const grouped = {};
+
+      // Group costs from procurements
+      procurements.forEach((item) => {
+        const key = produceTypeFromName(item.produceName);
+        if (!grouped[key]) grouped[key] = { procured: 0, sold: 0, revenue: 0, cost: 0 };
+        grouped[key].procured += Number(item.tonnageKg || 0);
+        grouped[key].cost += Number(item.costUGX || 0);
+      });
+
+      // Group revenue from sales
+      sales.forEach((item) => {
+        const key = produceTypeFromName(item.produceName);
+        if (!grouped[key]) grouped[key] = { procured: 0, sold: 0, revenue: 0, cost: 0 };
+        grouped[key].sold += Number(item.tonnageKg || 0);
+        grouped[key].revenue += Number(item.amountPaidUGX || 0);
+      });
+
+      const rows = Object.entries(grouped);
+      body.innerHTML = rows.length ? rows.map(([type, totals]) => {
+        const margin = totals.revenue - totals.cost;
+        const marginClass = margin < 0 ? 'negative' : 'positive';
+        return `<tr><td><strong>${type}</strong></td><td>${totals.procured.toLocaleString()}</td><td>${totals.sold.toLocaleString()}</td><td>${totals.revenue.toLocaleString()}</td><td>${totals.cost.toLocaleString()}</td><td><span class="${marginClass}">${margin.toLocaleString()}</span></td></tr>`;
+      }).join('') : '<tr><td colspan="6">No performance data available.</td></tr>';
+    }
+
+    // Calculates high-level metrics for the Reports and Analytics panels
+    function renderReportsAndAnalytics(procurements, sales, credits, stock) {
+      const totalRevenue = sales.reduce((sum, item) => sum + Number(item.amountPaidUGX || 0), 0);
+      const totalCost = procurements.reduce((sum, item) => sum + Number(item.costUGX || 0), 0);
+      const totalCredit = credits.reduce((sum, item) => sum + Math.max(Number(item.amountDueUGX || 0) - Number(item.amountPaidUGX || 0), 0), 0);
+      const totalStockKg = stock.reduce((sum, item) => sum + Number(item.quantityKg > 0 ? item.quantityKg : item.quantity || 0), 0);
+      const grossMargin = totalRevenue - totalCost;
+      const marginPct = totalCost > 0 ? ((grossMargin / totalCost) * 100).toFixed(1) : '0.0';
+
+      // Update Report screen text fields
+      document.getElementById('report-total-revenue').textContent = formatCurrency(totalRevenue);
+      document.getElementById('report-total-cost').textContent = formatCurrency(totalCost);
+      document.getElementById('report-total-credit').textContent = formatCurrency(totalCredit);
+      
+      // Update Analytics screen metrics
+      document.getElementById('analytics-gross-revenue').textContent = formatCurrency(totalRevenue);
+      document.getElementById('analytics-total-cost').textContent = formatCurrency(totalCost);
+      document.getElementById('analytics-gross-margin').textContent = formatCurrency(grossMargin);
+      document.getElementById('analytics-gross-margin').className = grossMargin < 0 ? 'metric-negative' : '';
+      document.getElementById('analytics-margin-pct').textContent = `${marginPct}%`;
+      
+      // Calculate averages and volume counts
+      document.getElementById('analytics-procurement-entries').textContent = String(procurements.length);
+      document.getElementById('analytics-procured-kg').textContent = `${procurements.reduce((sum, item) => sum + Number(item.tonnageKg || 0), 0).toLocaleString()} kg`;
+      document.getElementById('analytics-avg-cost').textContent = formatCurrency(procurements.length ? totalCost / Math.max(procurements.reduce((sum, item) => sum + Number(item.tonnageKg || 0), 0), 1) : 0);
+      document.getElementById('analytics-sales-transactions').textContent = String(sales.length);
+      document.getElementById('analytics-sold-kg').textContent = `${sales.reduce((sum, item) => sum + Number(item.tonnageKg || 0), 0).toLocaleString()} kg`;
+      document.getElementById('analytics-avg-price').textContent = formatCurrency(sales.length ? totalRevenue / Math.max(sales.reduce((sum, item) => sum + Number(item.tonnageKg || 0), 0), 1) : 0);
+
+      // Trigger main dashboard stat update
+      renderDashboardStats({
+        totalRevenue, totalProcurementCost: totalCost, totalSalesTransactions: sales.length,
+        creditOutstanding: totalCredit, totalStockKg,
+        lowStockCount: stock.filter((item) => Number(item.quantityKg > 0 ? item.quantityKg : item.quantity || 0) > 0 && Number(item.quantityKg > 0 ? item.quantityKg : item.quantity || 0) < 2000).length,
+      });
+    }
+
+    // Populates the Audit Log table with a history of all system transactions
+    function renderAudit(procurements, sales, credits, payments) {
+      const body = document.getElementById('audit-body');
+      const entries = [
+        ...procurements.map((item) => ({ date: item.procurementDate, action: 'Procurement Recorded', user: item.recordedBy || item.dealerName, role: 'Manager', details: `${Number(item.tonnageKg || 0).toLocaleString()}kg ${item.produceName} procured from ${item.dealerName}` })),
+        ...sales.map((item) => ({ date: item.dateTime, action: 'Sale Recorded', user: item.salesAgentName, role: 'Sales Agent', details: `${Number(item.tonnageKg || 0).toLocaleString()}kg ${item.produceName} sold to ${item.buyerName}` })),
+        ...credits.map((item) => ({ date: item.dispatchDate, action: 'Credit Sale Created', user: item.salesAgentName, role: 'Sales Agent', details: `${Number(item.tonnageKg || 0).toLocaleString()}kg ${item.produceName} on credit to ${item.buyerName}` })),
+        ...payments.map((item) => ({ date: item.paymentDate, action: 'Payment Recorded', user: item.recordedBy, role: 'Sales Agent', details: `${formatCurrency(item.amountPaidUGX)} received from ${item.buyerName}` })),
+      ].sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 15);
+
+      body.innerHTML = entries.length ? entries.map((item) => `
+        <tr>
+          <td>${formatDateTime(item.date)}</td>
+          <td><strong>${item.action}</strong></td>
+          <td>${item.user || 'System'}</td>
+          <td><span class="role-pill ${roleClass(item.role)}">${item.role}</span></td>
+          <td class="audit-detail">${item.details}</td>
+        </tr>
+      `).join('') : '<tr><td colspan="5">No audit activity available.</td></tr>';
+    }
+
+    // Main orchestrator: fetches all necessary data from the server in parallel and triggers UI renders
+    async function loadDirectorDashboard() {
+      const [report, stock, sales, credits, procurements, users, payments] = await Promise.all([
+        fetchJson('/reports/totals'), fetchJson('/stock/all'), fetchJson('/sales/recent'),
+        fetchJson('/credit/records'), fetchJson('/procurement/all'), fetchJson('/users/all'),
+        fetchJson('/payments/history'),
+      ]);
+
+      // Call individual renderers
+      renderUsers(users);
+      renderActivities(procurements, sales, credits);
+      renderProducePerformance(procurements, sales);
+      renderReportsAndAnalytics(procurements, sales, credits, stock);
+      renderAudit(procurements, sales, credits, payments);
+
+      // Create a mapping of stock items per branch for the Branch view
+      const branchMap = {};
+      stock.forEach((item) => {
+        branchMap[item.branch] = branchMap[item.branch] || [];
+        branchMap[item.branch].push(item);
+      });
+      // Generate summary data for each branch (Sales vs Stock vs Credit)
+      const branchSummaries = Object.keys(branchMap).sort().map((branch) => ({
+        branch,
+        totalStockKg: branchMap[branch].reduce((sum, item) => sum + Number(item.quantityKg > 0 ? item.quantityKg : item.quantity || 0), 0),
+        totalSales: sales.filter((item) => item.branch === branch).reduce((sum, item) => sum + Number(item.amountPaidUGX || 0), 0),
+        creditOutstanding: credits.filter((item) => item.branch === branch).reduce((sum, item) => sum + Math.max(Number(item.amountDueUGX || 0) - Number(item.amountPaidUGX || 0), 0), 0),
+      }));
+      renderBranchCards(branchSummaries, branchMap);
+
+      // Set greeting and director profile info
+      document.getElementById('director-name').textContent = report.director || getUser().fullName || 'Mr. Orban';
+      document.getElementById('director-role').textContent = 'Director';
+    }
+
+    // Event listener for the "Add User" form submission
+    addUserForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const payload = {
+        fullName: document.getElementById('new-user-name').value.trim(),
+        username: document.getElementById('new-user-username').value.trim(),
+        password: document.getElementById('new-user-password').value,
+        role: document.getElementById('new-user-role').value,
+        branch: document.getElementById('new-user-branch').value || undefined, // Branch is optional for Directors
+      };
+
+      try {
+        await fetchJson('/users/create', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        addUserForm.reset(); // Clear form on success
+        await loadDirectorDashboard(); // Refresh the user table
+      } catch (error) {
+        alert(error.message || 'Failed to add user.');
+      }
+    });
+
+    // Initial sequence: activate the default panel and fetch all data
+    activatePanel('dashboard');
+    loadDirectorDashboard().catch((error) => {
+      alert(error.message || 'Failed to load director dashboard.');
+    });
+  
+  </script>
+</body>
+</html>

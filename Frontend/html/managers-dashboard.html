@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manager Dashboard - Karibu Groceries</title>
+  <link rel="stylesheet" href="/Frontend/styles/manager.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-inner">
+        <div class="brand">
+          <div class="brand-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 3 4.5 7 12 11 19.5 7 12 3Z"></path>
+              <path d="M4.5 7v10L12 21l7.5-4V7"></path>
+              <path d="M12 11v10"></path>
+            </svg>
+          </div>
+          <div>
+            <h1>Karibu Groceries</h1>
+            <p>Wholesale Distributor</p>
+          </div>
+        </div>
+
+        <div class="menu-title">BRANCH MANAGEMENT</div>
+        <nav>
+          <a class="nav-item active" href="#" data-panel="dashboard"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg><span>Dashboard</span></a>
+          <a class="nav-item" href="#" data-panel="procurement"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2"></rect><path d="M9 7h6"></path><path d="M9 11h6"></path><path d="M9 15h4"></path></svg><span>Procurement</span></a>
+          <a class="nav-item" href="#" data-panel="stock"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h18"></path><path d="M5 7v13h14V7"></path><path d="M9 12h6"></path><path d="M9 16h6"></path></svg><span>Stock</span></a>
+          <a class="nav-item" href="#" data-panel="reports"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3v18h18"></path><path d="M8 17V9"></path><path d="M13 17V5"></path><path d="M18 17v-3"></path></svg><span>Branch Reports</span></a>
+          <a class="nav-item" href="#" data-panel="sales"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="20" r="1"></circle><circle cx="18" cy="20" r="1"></circle><path d="M3 4h2l2.4 10.6a2 2 0 0 0 2 1.4h7.6a2 2 0 0 0 2-1.6L21 8H7"></path></svg><span>Sales Monitor</span></a>
+          <a class="nav-item" href="#" data-panel="credit"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"></rect><path d="M3 10h18"></path></svg><span>Credit Management</span></a>
+        </nav>
+        <div class="sidebar-footer">
+          <p>KGL System v1.0</p>
+          <p>Manager Panel</p>
+        </div>
+      </div>
+    </aside>
+
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+    <div class="workspace">
+      <header class="topbar">
+        <button class="menu-toggle" id="menu-toggle" aria-label="Open menu">
+          <svg viewBox="0 0 24 24"><path d="M3 12h18"></path><path d="M3 6h18"></path><path d="M3 18h18"></path></svg>
+        </button>
+        <div class="topbar-title" id="manager-branch-title">Branch Dashboard</div>
+        <div class="topbar-user">
+          <div class="avatar">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 20a8 8 0 0 1 16 0"></path></svg>
+          </div>
+          <div>
+            <strong id="manager-name">Manager</strong>
+            <small id="manager-role">Manager</small>
+          </div>
+          <button class="logout-btn" aria-label="Logout" onclick="logoutUser();">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 17l5-5-5-5"></path><path d="M21 12H9"></path><path d="M12 19H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h7"></path></svg>
+          </button>
+        </div>
+      </header>
+
+      <main class="content-area">
+        <section class="panel active" id="panel-dashboard">
+          <h2 id="manager-dashboard-title">Branch Dashboard</h2>
+          <p class="subtext" id="manager-dashboard-subtext">Branch management overview</p>
+          <section class="metric-grid">
+            <article class="metric-card"><div class="metric-icon green"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 15 5-5 4 4 5-5"></path><path d="M14 4h5v5"></path></svg></div><div><p>Branch Revenue</p><strong id="manager-kpi-revenue">UGX 0</strong></div></article>
+            <article class="metric-card"><div class="metric-icon blue"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4.5 7 12 11 19.5 7 12 3Z"></path><path d="M4.5 7v10L12 21l7.5-4V7"></path><path d="M12 11v10"></path></svg></div><div><p>Procurements</p><strong id="manager-kpi-procurements">0</strong></div></article>
+            <article class="metric-card"><div class="metric-icon green-outline"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16"></path><path d="M6 20V7l6-3 6 3v13"></path><path d="M10 11h4"></path><path d="M10 15h4"></path></svg></div><div><p>Stock Items</p><strong id="manager-kpi-stock">0</strong></div></article>
+            <article class="metric-card"><div class="metric-icon amber"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"></rect><path d="M2 10h20"></path></svg></div><div><p>Credit Due</p><strong id="manager-kpi-credit">UGX 0</strong></div></article>
+          </section>
+          <section class="alert-card">
+            <div class="alert-left"><div class="alert-title-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10.29 3.86 1.82 18A2 2 0 0 0 3.53 21h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg><h3>Low Stock Alert</h3></div><p id="manager-low-stock-name">No low stock alerts.</p></div>
+            <strong id="manager-low-stock-qty">0 alerts</strong>
+          </section>
+          <section class="stock-card">
+            <h3>Current Stock</h3>
+            <table>
+              <thead><tr><th>Produce</th><th>Type</th><th>Quantity (kg)</th><th>Selling Price/kg</th></tr></thead>
+              <tbody id="dashboard-stock-body"><tr><td colspan="4">Loading stock...</td></tr></tbody>
+            </table>
+          </section>
+        </section>
+
+        <section class="panel" id="panel-procurement">
+          <div class="page-head">
+            <div>
+              <h2>Procurement</h2>
+              <p class="subtext">Record and manage produce acquisitions</p>
+            </div>
+            <a id="new-procurement-btn" class="new-procurement-btn" href="#new-procurement-form">+ New Procurement</a>
+          </div>
+
+          <section id="procurement-history" class="procurement-card">
+            <h3>Procurement History</h3>
+            <table>
+              <thead><tr><th>Date</th><th>Produce</th><th>Type</th><th>Tonnage</th><th>Cost (UGX)</th><th>Dealer</th><th>Branch</th></tr></thead>
+              <tbody id="procurement-table-body"><tr><td colspan="7">Loading...</td></tr></tbody>
+            </table>
+          </section>
+
+          <section id="new-procurement-form" class="procurement-card procurement-entry-card" hidden>
+            <h3>Record New Procurement</h3>
+            <form id="procurement-form" class="procurement-form">
+              <div class="field"><label for="produceName">Produce Name *</label><select id="produceName" required><option value="">Select produce</option><option value="Beans K132">Beans K132</option><option value="Beans Nambale">Beans Nambale</option><option value="Cow Peas Local">Cow Peas Local</option><option value="G-Nuts Red">G-Nuts Red</option><option value="Grain Maize White">Grain Maize White</option><option value="Grain Maize Yellow">Grain Maize Yellow</option><option value="Maize Flour">Maize Flour</option><option value="Soybeans Grade A">Soybeans Grade A</option><option value="Wheat Flour">Wheat Flour</option></select></div>
+              <div class="field"><label for="produceType">Produce Type *</label><select id="produceType" required><option value="">Select type</option><option value="Cereals">Cereals</option><option value="Grains">Grains</option><option value="Flour">Flour</option></select></div>
+              <div class="field"><label for="tonnage">Tonnage (kg) *</label><input id="tonnage" type="number" min="1000" placeholder="Min 1000" required></div>
+              <div class="field"><label>&nbsp;</label><p id="tonnage-alert" style="color:#dc2626;font-weight:700;display:none;">Tonnage must be 1000 kgs and above.</p></div>
+              <div class="field"><label for="cost">Cost (UGX) *</label><input id="cost" type="number" min="10000" placeholder="e.g. 5000000" required></div>
+              <div class="field"><label for="dealerName">Dealer Name *</label><input id="dealerName" type="text" placeholder="Dealer name" required></div>
+              <div class="field"><label for="branch">Branch *</label><select id="branch" required><option selected>Matugga</option><option>Maganjo</option></select></div>
+              <div class="field"><label for="contact">Contact *</label><input id="contact" type="text" placeholder="+256XXXXXXXXX" required></div>
+              <div class="field"><label for="price">Selling Price/kg (UGX) *</label><input id="price" type="number" min="1" placeholder="e.g. 35000" required></div>
+              <div class="form-actions"><button id="cancel-procurement-btn" class="cancel-btn" type="button">Cancel</button><button class="save-btn" type="submit">Save Procurement</button></div>
+            </form>
+          </section>
+        </section>
+
+        <section class="panel" id="panel-stock">
+          <section class="stock-page-head">
+            <h2>Stock Management</h2>
+            <p class="subtext" id="stock-summary-text">Branch stock and selling price management</p>
+          </section>
+          <section class="stock-card">
+            <h3>Available Produce and Prices</h3>
+            <table>
+              <thead><tr><th>Produce</th><th>Type</th><th>Quantity (kg)</th><th>Price/kg (UGX)</th><th>Save Stock</th></tr></thead>
+              <tbody id="stock-management-body"><tr><td colspan="5">Loading stock...</td></tr></tbody>
+            </table>
+            <p id="stock-msg" style="margin-top:0.75rem;font-weight:600;" hidden></p>
+          </section>
+        </section>
+
+        <section class="panel" id="panel-reports">
+          <section class="branch-reports-head">
+            <h2>Branch Reports</h2>
+            <p class="subtext" id="reports-summary-text">Branch performance summary</p>
+          </section>
+          <section class="branch-report-kpi-grid">
+            <article class="branch-report-kpi-card"><p>Total Sales</p><strong id="reports-total-sales">UGX 0</strong></article>
+            <article class="branch-report-kpi-card"><p>Stock Value</p><strong id="reports-stock-value">UGX 0</strong></article>
+            <article class="branch-report-kpi-card"><p>Credit Outstanding</p><strong class="warning" id="reports-credit-due">UGX 0</strong></article>
+          </section>
+          <section class="branch-report-sales-card">
+            <h3>Sales by Produce</h3>
+            <div id="sales-by-produce"><div class="branch-report-sales-row"><span>No sales recorded yet.</span><strong>UGX 0</strong></div></div>
+          </section>
+        </section>
+
+        <section class="panel" id="panel-sales">
+          <section class="sales-monitor-head">
+            <h2>Sales Monitor</h2>
+            <p class="subtext" id="sales-monitor-subtext">View sales made at this branch.</p>
+          </section>
+          <section class="sales-monitor-card">
+            <table class="sales-monitor-table">
+              <thead><tr><th>Date</th><th>Produce</th><th>Tonnage (kg)</th><th>Amount (UGX)</th><th>Buyer</th><th>Agent</th></tr></thead>
+              <tbody id="sales-monitor-body"><tr><td colspan="6">Loading sales...</td></tr></tbody>
+            </table>
+            <div class="sales-monitor-total" id="sales-monitor-total">Total: UGX 0</div>
+          </section>
+        </section>
+
+        <section class="panel" id="panel-credit">
+          <section class="credit-management-head">
+            <h2>Credit Management</h2>
+            <p class="subtext" id="credit-monitor-subtext">Monitor credit sales at this branch.</p>
+          </section>
+          <section class="credit-management-card">
+            <table class="credit-management-table">
+              <thead><tr><th>Buyer</th><th>Produce</th><th>Amount Due</th><th>Paid</th><th>Balance Due</th><th>Date</th><th>Status</th></tr></thead>
+              <tbody id="credit-management-body"><tr><td colspan="7">Loading credit sales...</td></tr></tbody>
+            </table>
+          </section>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script>
+   // Define the base URL for API requests using the current window's origin
+    const API_URL = `${window.location.origin}/api`;
+
+    // A static map to automatically categorize produce items into types
+    const PRODUCE_TYPE_MAP = {
+      'Beans K132': 'Grains',
+      'Beans Nambale': 'Grains',
+      'Cow Peas Local': 'Grains',
+      'G-Nuts Red': 'Grains',
+      'Grain Maize White': 'Cereals',
+      'Grain Maize Yellow': 'Cereals',
+      'Maize Flour': 'Flour',
+      'Soybeans Grade A': 'Grains',
+      'Wheat Flour': 'Flour',
+    };
+
+    // Creates an array of product names from the map keys for catalog rendering
+    const PRODUCT_CATALOG = Object.keys(PRODUCE_TYPE_MAP);
+
+    // Clears all authentication data from the browser and redirects to login
+    function logoutUser() {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      sessionStorage.removeItem('token');
+      sessionStorage.removeItem('user');
+      window.location.replace('/login.html');
+    }
+
+    // Retrieves the JWT token from storage to authorize API requests
+    function getToken() {
+      return localStorage.getItem('token') || sessionStorage.getItem('token') || '';
+    }
+
+    // Parses the stored user JSON string into a usable object
+    function getUser() {
+      try {
+        return JSON.parse(localStorage.getItem('user') || sessionStorage.getItem('user') || '{}');
+      } catch (error) {
+        return {};
+      }
+    }
+
+    // Validation helper to check if a string matches the MongoDB ObjectId format
+    function looksLikeObjectId(value) {
+      return typeof value === 'string' && /^[a-f0-9]{24}$/i.test(value.trim());
+    }
+
+    // Sanitizes the branch name; defaults to 'Matugga' if data is missing or is a raw ID
+    function getBranchLabel(user) {
+      const branch = user.branchName || user.branch;
+      if (!branch || looksLikeObjectId(branch)) {
+        return 'Matugga';
+      }
+      return String(branch).trim();
+    }
+
+    // Sanitizes the manager's name for display; defaults to 'Manager' if empty
+    function getManagerLabel(user) {
+      const name = user.fullName || user.username;
+      if (!name || looksLikeObjectId(name)) {
+        return 'Manager';
+      }
+      return String(name).trim();
+    }
+
+    // Formats numbers into a standard Ugandan Shilling currency string (e.g., UGX 1,000)
+    function formatCurrency(value) {
+      return `UGX ${Number(value || 0).toLocaleString()}`;
+    }
+
+    // Returns just the date portion (YYYY-MM-DD) of an ISO date string
+    function formatDate(value) {
+      return value ? new Date(value).toISOString().split('T')[0] : '-';
+    }
+
+    // Look up the category (Grains/Flour/Cereals) based on the produce name
+    function getTypeForProduce(name) {
+      return PRODUCE_TYPE_MAP[name] || 'Grains';
+    }
+
+    // Displays feedback messages (success/error) in a specific DOM element
+    function setMessage(id, text, isError = false) {
+      const node = document.getElementById(id);
+      if (!node) return;
+      node.textContent = text;
+      node.hidden = !text;
+      node.style.color = isError ? '#dc2626' : '#25773f'; // Red for error, Green for success
+    }
+
+    // Custom fetch wrapper that adds Auth headers and handles JSON parsing/errors
+    async function fetchJson(path, options = {}) {
+      const response = await fetch(`${API_URL}${path}`, {
+        ...options,
+        headers: {
+          ...(options.headers || {}),
+          Authorization: `Bearer ${getToken()}`,
+        },
+      });
+      const contentType = response.headers.get('content-type') || '';
+      const payload = contentType.includes('application/json')
+        ? await response.json()
+        : { message: 'Request failed. Please log in again and retry.' };
+      
+      if (!response.ok) {
+        throw new Error(payload.message || payload.error || payload.details || 'Request failed.');
+      }
+      return payload;
+    }
+
+    // Updates the UI text elements (titles, names) based on the logged-in user's profile
+    function setProfile() {
+      const user = getUser();
+      if (!getToken()) {
+        window.location.replace('/login.html'); // Kick out unauthenticated users
+        return;
+      }
+
+      const branchLabel = getBranchLabel(user);
+      const managerLabel = getManagerLabel(user);
+      document.getElementById('manager-branch-title').textContent = `${branchLabel} Branch`;
+      document.getElementById('manager-name').textContent = managerLabel;
+      document.getElementById('manager-role').textContent = user.role || 'Manager';
+      document.getElementById('manager-dashboard-title').textContent = `${branchLabel} Branch Dashboard`;
+      document.getElementById('manager-dashboard-subtext').textContent = `${branchLabel} branch management overview`;
+      document.getElementById('reports-summary-text').textContent = `${branchLabel} branch performance summary`;
+      document.getElementById('sales-monitor-subtext').textContent = `View sales made at ${branchLabel} branch.`;
+      document.getElementById('credit-monitor-subtext').textContent = `Monitor credit sales at ${branchLabel} branch.`;
+      document.getElementById('branch').value = branchLabel; // Pre-fill branch in forms
+    }
+
+    // Mobile Sidebar Logic: Toggle classes to show/hide the menu and overlay
+    const sidebar = document.querySelector('.sidebar');
+    const sidebarOverlay = document.getElementById('sidebar-overlay');
+    const menuToggle = document.getElementById('menu-toggle');
+
+    menuToggle.addEventListener('click', function () {
+      sidebar.classList.toggle('open');
+      sidebarOverlay.classList.toggle('open');
+    });
+
+    sidebarOverlay.addEventListener('click', function () {
+      sidebar.classList.remove('open');
+      sidebarOverlay.classList.remove('open');
+    });
+
+    // Handle Dashboard Navigation: Switches between Procurement, Stock, Sales, and Credit panels
+    const managerNavItems = document.querySelectorAll('.nav-item[data-panel]');
+    const managerPanels = document.querySelectorAll('.panel');
+    managerNavItems.forEach((item) => {
+      item.addEventListener('click', (event) => {
+        event.preventDefault();
+        const target = item.getAttribute('data-panel');
+        managerNavItems.forEach((n) => n.classList.remove('active'));
+        item.classList.add('active');
+        managerPanels.forEach((panel) => panel.classList.toggle('active', panel.id === `panel-${target}`));
+        sidebar.classList.remove('open'); // Auto-close sidebar on mobile after clicking
+        sidebarOverlay.classList.remove('open');
+      });
+    });
+
+    // Select elements related to the Procurement form and history
+    const newProcurementBtn = document.getElementById('new-procurement-btn');
+    const procurementHistory = document.getElementById('procurement-history');
+    const procurementFormCard = document.getElementById('new-procurement-form');
+    const procurementForm = document.getElementById('procurement-form');
+    const cancelProcurementBtn = document.getElementById('cancel-procurement-btn');
+    const produceNameSelect = document.getElementById('produceName');
+    const produceTypeSelect = document.getElementById('produceType');
+    const tonnageInput = document.getElementById('tonnage');
+    const tonnageAlert = document.getElementById('tonnage-alert');
+
+    // Auto-fill the "Produce Type" dropdown when a "Produce Name" is selected
+    produceNameSelect.addEventListener('change', function () {
+      const mappedType = PRODUCE_TYPE_MAP[produceNameSelect.value];
+      if (mappedType) {
+        produceTypeSelect.value = mappedType;
+      }
+    });
+
+    // Real-time validation: Show alert if tonnage is below the business minimum (1000kg)
+    tonnageInput.addEventListener('input', function () {
+      tonnageAlert.style.display = Number(tonnageInput.value || 0) < 1000 ? 'block' : 'none';
+    });
+
+    // Toggle view to show the "Add New Procurement" form
+    newProcurementBtn.addEventListener('click', function (event) {
+      event.preventDefault();
+      procurementHistory.hidden = true;
+      procurementFormCard.hidden = false;
+      procurementFormCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // Cancel procurement entry and return to history view
+    cancelProcurementBtn.addEventListener('click', function () {
+      procurementForm.reset();
+      procurementFormCard.hidden = true;
+      procurementHistory.hidden = false;
+      tonnageAlert.style.display = 'none';
+    });
+
+    // Identifies items with stock below 2000kg and displays an alert on the dashboard
+    function updateLowStock(stockItems) {
+      const lowStockItems = stockItems.filter((item) => {
+        const qty = Number(item.quantityKg > 0 ? item.quantityKg : item.quantity || 0);
+        return qty > 0 && qty < 2000;
+      });
+      if (!lowStockItems.length) {
+        document.getElementById('manager-low-stock-name').textContent = 'No low stock alerts.';
+        document.getElementById('manager-low-stock-qty').textContent = '0 alerts';
+        return;
+      }
+      const item = lowStockItems[0]; // Show the most critical item
+      const qty = Number(item.quantityKg > 0 ? item.quantityKg : item.quantity || 0);
+      document.getElementById('manager-low-stock-name').textContent = item.name;
+      document.getElementById('manager-low-stock-qty').textContent = `${qty.toLocaleString()} kg remaining`;
+    }
+
+    // Renders the simple stock table shown on the main Dashboard landing page
+    function renderDashboardStock(stockItems) {
+      const body = document.getElementById('dashboard-stock-body');
+      const activeStock = stockItems.filter((item) => Number(item.quantityKg > 0 ? item.quantityKg : item.quantity || 0) > 0);
+      if (!activeStock.length) {
+        body.innerHTML = '<tr><td colspan="4">No stock recorded yet.</td></tr>';
+        return;
+      }
+      body.innerHTML = activeStock.map((item) => {
+        const qty = Number(item.quantityKg > 0 ? item.quantityKg : item.quantity || 0);
+        const price = Number(item.pricePerKg || 0);
+        return `<tr><td>${item.name}</td><td>${getTypeForProduce(item.name)}</td><td>${qty.toLocaleString()}</td><td>${price.toLocaleString()}</td></tr>`;
+      }).join('');
+    }
+
+    // Renders the Stock Management table with editable inputs for Quantity and Price
+    function renderStockManagement(stockItems) {
+      const body = document.getElementById('stock-management-body');
+      const stockMap = new Map(stockItems.map((item) => [item.name, item]));
+      const totalValue = stockItems.reduce((sum, item) => {
+        const qty = Number(item.quantityKg > 0 ? item.quantityKg : item.quantity || 0);
+        return sum + qty * Number(item.pricePerKg || 0);
+      }, 0);
+      document.getElementById('stock-summary-text').textContent = `${getBranchLabel(getUser())} Branch - Total Stock Value: ${formatCurrency(totalValue)}`;
+
+      body.innerHTML = PRODUCT_CATALOG.map((name) => {
+        const item = stockMap.get(name) || { name, quantity: 0, quantityKg: 0, pricePerKg: 0 };
+        const qty = Number(item.quantityKg > 0 ? item.quantityKg : item.quantity || 0);
+        const price = Number(item.pricePerKg || 0);
+        return `
+          <tr>
+            <td>${item.name}</td>
+            <td>${getTypeForProduce(item.name)}</td>
+            <td><input type="number" min="0" value="${qty > 0 ? qty : ''}" data-qty-input="${item.name}" placeholder="Qty" style="width:120px;padding:8px 10px;border:1px solid #d0d7d4;border-radius:10px;"></td>
+            <td><input type="number" min="1" value="${price > 0 ? price : ''}" data-price-input="${item.name}" placeholder="Price" style="width:120px;padding:8px 10px;border:1px solid #d0d7d4;border-radius:10px;"></td>
+            <td>
+              <button type="button" class="save-btn" data-stock-save="${item.name}">Save</button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    // Renders the table of recent sales and calculates the total sales amount
+    function renderSalesTable(sales) {
+      const body = document.getElementById('sales-monitor-body');
+      const total = sales.reduce((sum, item) => sum + Number(item.amountPaidUGX || 0), 0);
+      document.getElementById('sales-monitor-total').textContent = `Total: ${formatCurrency(total)}`;
+      if (!sales.length) {
+        body.innerHTML = '<tr><td colspan="6">No sales recorded yet.</td></tr>';
+        return;
+      }
+      body.innerHTML = sales.map((sale) => `
+        <tr>
+          <td>${formatDate(sale.dateTime)}</td>
+          <td>${sale.produceName}</td>
+          <td>${Number(sale.tonnageKg || 0).toLocaleString()}</td>
+          <td>${Number(sale.amountPaidUGX || 0).toLocaleString()}</td>
+          <td>${sale.buyerName}</td>
+          <td>${sale.salesAgentName}</td>
+        </tr>
+      `).join('');
+    }
+
+    // Renders the Credit Sales table and calculates outstanding balances
+    function renderCreditTable(records) {
+      const body = document.getElementById('credit-management-body');
+      if (!records.length) {
+        body.innerHTML = '<tr><td colspan="7">No credit sales recorded yet.</td></tr>';
+        return;
+      }
+      body.innerHTML = records.map((record) => {
+        const amountDue = Number(record.amountDueUGX || 0);
+        const amountPaid = Number(record.amountPaidUGX || 0);
+        const balance = Math.max(amountDue - amountPaid, 0);
+        const status = balance === 0 && amountDue > 0 ? 'paid' : 'pending';
+        const style = status === 'paid' ? 'background:#dff6e7;color:#25773f;' : '';
+        return `
+          <tr>
+            <td>${record.buyerName}</td>
+            <td>${record.produceName}</td>
+            <td>${amountDue.toLocaleString()}</td>
+            <td>${amountPaid.toLocaleString()}</td>
+            <td class="credit-balance">${balance.toLocaleString()}</td>
+            <td>${formatDate(record.dueDate)}</td>
+            <td><span class="credit-status-pending" style="${style}">${status}</span></td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    // Aggregates data from all sources to update the KPI cards and Reports section
+    function updateReports(procurements, stockItems, sales, creditRecords) {
+      const revenue = sales.reduce((sum, item) => sum + Number(item.amountPaidUGX || 0), 0);
+      const stockValue = stockItems.reduce((sum, item) => {
+        const qty = Number(item.quantityKg > 0 ? item.quantityKg : item.quantity || 0);
+        return sum + qty * Number(item.pricePerKg || 0);
+      }, 0);
+      const creditDue = creditRecords.reduce((sum, item) => sum + Math.max(Number(item.amountDueUGX || 0) - Number(item.amountPaidUGX || 0), 0), 0);
+
+      // Update Top KPIs
+      document.getElementById('manager-kpi-revenue').textContent = formatCurrency(revenue);
+      document.getElementById('manager-kpi-procurements').textContent = String(procurements.length);
+      document.getElementById('manager-kpi-stock').textContent = String(stockItems.length);
+      document.getElementById('manager-kpi-credit').textContent = formatCurrency(creditDue);
+      
+      // Update Detailed Report section
+      document.getElementById('reports-total-sales').textContent = formatCurrency(revenue);
+      document.getElementById('reports-stock-value').textContent = formatCurrency(stockValue);
+      document.getElementById('reports-credit-due').textContent = formatCurrency(creditDue);
+
+      // Generate the "Sales by Produce" breakdown list
+      const salesByProduce = sales.reduce((acc, sale) => {
+        acc[sale.produceName] = (acc[sale.produceName] || 0) + Number(sale.amountPaidUGX || 0);
+        return acc;
+      }, {});
+      const target = document.getElementById('sales-by-produce');
+      const entries = Object.entries(salesByProduce);
+      target.innerHTML = entries.length
+        ? entries.map(([name, total]) => `<div class="branch-report-sales-row"><span>${name}</span><strong>${formatCurrency(total)}</strong></div>`).join('')
+        : '<div class="branch-report-sales-row"><span>No sales recorded yet.</span><strong>UGX 0</strong></div>';
+    }
+
+    // Fetches procurement logs from the server and renders the history table
+    async function loadProcurements() {
+      const records = await fetchJson('/procurement/procurement');
+      const tbody = document.getElementById('procurement-table-body');
+      if (!records.length) {
+        tbody.innerHTML = '<tr><td colspan="7">No procurement records found.</td></tr>';
+        return records;
+      }
+      tbody.innerHTML = records.map((r) => `<tr><td>${formatDate(r.procurementDate)}</td><td>${r.produceName}</td><td>${r.produceType}</td><td>${Number(r.tonnageKg || 0).toLocaleString()} kg</td><td>${Number(r.costUGX || 0).toLocaleString()}</td><td>${r.dealerName}</td><td>${r.branchName}</td></tr>`).join('');
+      return records;
+    }
+
+    // Fetches stock data for the specific branch and triggers related renders
+    async function loadStock() {
+      const stock = await fetchJson(`/stock/branch/${encodeURIComponent(getBranchLabel(getUser()))}`);
+      renderDashboardStock(stock);
+      renderStockManagement(stock);
+      updateLowStock(stock);
+      return stock;
+    }
+
+    // Fetches recent sales for the branch
+    async function loadSales() {
+      const sales = await fetchJson('/sales/recent');
+      renderSalesTable(sales);
+      return sales;
+    }
+
+    // Fetches credit records for the branch
+    async function loadCreditSales() {
+      const records = await fetchJson('/credit/records');
+      renderCreditTable(records);
+      return records;
+    }
+
+    // Master function to refresh all dashboard data in parallel
+    async function refreshManagerDashboard() {
+      try {
+        const [procurements, stockItems, sales, creditRecords] = await Promise.all([
+          loadProcurements(),
+          loadStock(),
+          loadSales(),
+          loadCreditSales(),
+        ]);
+        updateReports(procurements, stockItems, sales, creditRecords);
+      } catch (error) {
+        alert(error.message || 'Failed to load manager dashboard data.');
+      }
+    }
+
+    // Event handler for submitting new procurements to the backend
+    procurementForm.addEventListener('submit', async function (event) {
+      event.preventDefault();
+      const tonnageKg = Number(document.getElementById('tonnage').value || 0);
+      if (tonnageKg < 1000) {
+        tonnageAlert.style.display = 'block';
+        alert('Tonnage must be 1000 kgs and above.');
+        return;
+      }
+
+      const payload = {
+        produceName: document.getElementById('produceName').value,
+        produceType: document.getElementById('produceType').value,
+        tonnageKg,
+        costUGX: Number(document.getElementById('cost').value),
+        dealerName: document.getElementById('dealerName').value.trim(),
+        branchName: document.getElementById('branch').value,
+        dealerContact: document.getElementById('contact').value.trim(),
+        sellingPricePerKg: Number(document.getElementById('price').value),
+        procurementDate: new Date().toISOString()
+      };
+
+      try {
+        await fetchJson('/procurement/procurement', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        alert('Procurement recorded successfully.');
+        procurementForm.reset();
+        tonnageAlert.style.display = 'none';
+        setTimeout(function () {
+          procurementFormCard.hidden = true; // Switch back to history view
+          procurementHistory.hidden = false;
+          refreshManagerDashboard(); // Refresh all data
+        }, 300);
+      } catch (error) {
+        alert(error.message || 'Failed to save procurement.');
+      }
+    });
+
+    // Event delegation for the "Save" buttons in the Stock Management table
+    document.getElementById('stock-management-body').addEventListener('click', async function (event) {
+      const produceName = event.target.getAttribute('data-stock-save');
+      if (!produceName) return;
+
+      // Find the specific inputs for this produce row
+      const qtyInput = document.querySelector(`[data-qty-input="${produceName}"]`);
+      const priceInput = document.querySelector(`[data-price-input="${produceName}"]`);
+      const quantityKg = Number(qtyInput.value || 0);
+      const pricePerKg = Number(priceInput.value || 0);
+
+      // Basic validation for stock updates
+      if (quantityKg < 0 || pricePerKg <= 0) {
+        setMessage('stock-msg', 'Enter a valid quantity and selling price.', true);
+        return;
+      }
+
+      try {
+        // "Upsert" logic: updates the stock item if it exists, creates it if it doesn't
+        await fetchJson('/stock/upsert-stock', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name: produceName, quantityKg, pricePerKg })
+        });
+        setMessage('stock-msg', `Updated quantity and price for ${produceName}.`);
+        refreshManagerDashboard();
+      } catch (error) {
+        setMessage('stock-msg', error.message || 'Failed to update stock.', true);
+      }
+    });
+
+    // Initialize the page: setup profile info and load the dashboard data
+    setProfile();
+    refreshManagerDashboard();
+  </script>
+</body>
+</html>
